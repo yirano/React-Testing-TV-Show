@@ -14,6 +14,9 @@ export const formatSeasons = allEpisodes => {
 
 export const fetchShow = () => {
   return Axios.get("https://api.tvmaze.com/singlesearch/shows?q=stranger-things&embed=episodes")
-    .then(res => res)
+    .then(res => {
+      formatSeasons(res.data._embedded.episodes)
+      return res
+    })
     .catch(err => console.log(err))
 }

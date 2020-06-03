@@ -3,9 +3,9 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import MutationObserver from 'mutation-observer'
-import { fetchShow as mockFetchShow } from '../utils/formatSeasons'
+import { fetchShow as mockFetchShow, formatSeasons as mockFormatSeasons } from '../utils/formatSeasons'
 import App from '../App'
 
 const mockData = [
@@ -23,15 +23,27 @@ const mockData = [
   }
 ]
 
+const mockSeasons = [
+  {
+    name: "Chapter 1",
+    season: 1
+  },
+  {
+    name: "Chapter 2",
+    season: 2
+  },
+]
+
 jest.mock('../utils/formatSeasons.js')
 global.MutationObserver = MutationObserver
 
-test('Render App component', () => {
+test('Render App component', async () => {
   mockFetchShow.mockResolvedValueOnce(mockData)
+  mockFormatSeasons.mockResolvedValueOnce(mockSeasons)
   const { getByTestId } = render(<App />)
 
   // const select = getByTestId('select')
-
+  await waitFor(() => { return console.log('hello') })
 })
 
 // mockFetchMissions.mockResolvedValueOnce({

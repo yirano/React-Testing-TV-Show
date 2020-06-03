@@ -1,5 +1,5 @@
-import React from 'react';
-import parse from 'html-react-parser';
+import React from 'react'
+import parse from 'html-react-parser'
 
 export default function Episodes(props) {
   return (
@@ -21,5 +21,5 @@ export default function Episodes(props) {
         </div>
       ))}
     </div>
-  );
+  )
 }
