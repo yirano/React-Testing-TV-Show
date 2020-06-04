@@ -1,5 +1,4 @@
 import Axios from 'axios'
-
 export const formatSeasons = allEpisodes => {
   const seasons = {}
   allEpisodes.forEach(e => {
@@ -15,8 +14,13 @@ export const formatSeasons = allEpisodes => {
 export const fetchShow = () => {
   return Axios.get("https://api.tvmaze.com/singlesearch/shows?q=stranger-things&embed=episodes")
     .then(res => {
-      formatSeasons(res.data._embedded.episodes)
+      console.log("fetchShow -> res", res)
+      // formatSeasons(res.data._embedded.episodes)
       return res
     })
     .catch(err => console.log(err))
 }
+
+
+
+
